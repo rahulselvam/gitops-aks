@@ -6,7 +6,7 @@ on:
       - dockerimage 
  
 env:
-  VERSION: $(( $(cat deploy-mario-docker-image-on-azure-k8s-using-argocd-gitops-repo/version.txt) + 1 ))
+  VERSION: $(( $(cat version.txt) + 1 ))
   
 jobs:
   
