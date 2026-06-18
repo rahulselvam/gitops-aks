@@ -3,7 +3,7 @@ name: "Build and push Super Mario Docker image with dynamic tag to Docker Hub"
 on:
   push:
     branches:
-      - dockerimage
+      - dockerimage 
  
 env:
   VERSION: $(( $(cat version.txt) + 1 ))
