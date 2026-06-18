@@ -6,7 +6,7 @@ This guide provides step-by-step instructions to deploy ArgoCD on AKS using Terr
 ## Prerequisites
 - **Kubectl**: Installed. Download here: [kubectl for Windows](https://dl.k8s.io/release/v1.28.9/bin/windows/amd64/kubectl.exe)
 - **Azure CLI**: Installed and authenticated with `az login`.
-- **AKS Credentials (AKS is up and running)**: Obtain with `aws eks update-kubeconfig --region us-east-2 --name test-eks`.
+- **AKS Credentials (AKS is up and running)**: Obtain with `aws eks update-kubeconfig --region ap-south-1 --name test-eks`.
 - **Visual Studio Code Base64 Decode and Encode Extension**: Installed for handling base64 decodings. Will be used to decode the initial ArgoCD admin password.
 
 ## Terraform Workflow
