@@ -11,14 +11,14 @@ terraform init
 
 ## Step 1: Plan Resources
 ```
-terraform plan -var-file="vars/east-us-2.tfvars"
+terraform plan -var-file="east-us-2.tfvars"
 ```
 
 ## Step 2: Apply Resources
 ```
-terraform apply -var-file="vars/east-us-2.tfvars"
+terraform apply -var-file="east-us-2.tfvars"
 ```
 
 ## Step 3: Cleanup Terraform Resources
 ```
-terraform destroy -var-file="vars/east-us-2.tfvars"
+terraform destroy -var-file="east-us-2.tfvars"
