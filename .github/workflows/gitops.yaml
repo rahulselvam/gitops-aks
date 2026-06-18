@@ -6,7 +6,7 @@ on:
       - dockerimage 
  
 env:
-  VERSION: $(( $(cat version.txt) + 1 ))
+  VERSION: $(( $(cat deploy-mario-docker-image-on-azure-k8s-using-argocd-gitops-repo/version.txt) + 1 ))
   
 jobs:
   
@@ -15,7 +15,7 @@ jobs:
  
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
    
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
