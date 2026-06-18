@@ -5,8 +5,8 @@ on:
     branches:
       - dockerimage 
  
-env:
-  VERSION: $(( $(cat version.txt) + 1 ))
+#env:
+#  VERSION: $(( $(cat version.txt) + 1 ))
   
 jobs:
   
@@ -20,6 +20,12 @@ jobs:
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
+      - name: Calculate and Set Version Env
+        run: |
+          CURRENT_VERSION=$(cat version.txt)
+          NEW_VERSION=$((CURRENT_VERSION + 1))
+          echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
+      
       - name: Login to Azure ACR
         uses: azure/docker-login@v2
         with:
@@ -29,8 +35,10 @@ jobs:
  
       - name: Build and Push Docker Image
         run: |
+          CURRENT_VERSION=$(cat version.txt)
+          VERSION=$((CURRENT_VERSION + 1))
           docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} .
-          docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} .
+          docker tag docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
           docker push docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }}
           docker push acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
 
