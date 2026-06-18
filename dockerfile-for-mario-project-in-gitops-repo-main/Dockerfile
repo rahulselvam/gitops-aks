@@ -7,7 +7,7 @@ LABEL maintainer="github.com/asecurityguru"
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
 
 # Copy your web application to the Tomcat webapps directory
-COPY webapp/ /usr/local/tomcat/webapps/ROOT/
+COPY dockerfile-for-mario-project-in-gitops-repo-main/webapp/ /usr/local/tomcat/webapps/ROOT/
 
 # Change the default shell to bash
 RUN ln -sf /bin/bash /bin/sh
