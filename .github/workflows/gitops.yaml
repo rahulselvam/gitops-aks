@@ -39,7 +39,7 @@ jobs:
           VERSION=$((CURRENT_VERSION + 1))
           docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} .
           docker tag docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
-          docker push docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }}
+          # docker push docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }}
           docker push acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
 
       
