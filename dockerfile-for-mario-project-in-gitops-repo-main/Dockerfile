@@ -1,7 +1,7 @@
 # Use an official Tomcat image as a base image
 FROM tomcat:jdk21-openjdk-slim
 
-LABEL maintainer="github.com/asecurityguru"
+LABEL maintainer="github.com/rahuls"
 
 # Remove default Tomcat application
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/*
