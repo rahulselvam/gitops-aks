@@ -1,9 +1,9 @@
-name: "Build and push Super Mario Docker image with dynamic tag to Docker Hub"
+name: "Build and push Super Mario Docker image with dynamic tag to ACR"
  
 on:
   push:
     branches:
-      - dockerimage 
+      - main 
  
 #env:
 #  VERSION: $(( $(cat version.txt) + 1 ))
@@ -17,9 +17,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
    
-      - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
       - name: Calculate and Set Version Env
         run: |
           CURRENT_VERSION=$(cat version.txt)
@@ -37,9 +34,7 @@ jobs:
         run: |
           CURRENT_VERSION=$(cat version.txt)
           VERSION=$((CURRENT_VERSION + 1))
-          docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} .
-          docker tag docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
-          # docker push docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }}
+          docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }} .
           docker push acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
 
       

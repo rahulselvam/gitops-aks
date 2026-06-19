@@ -1,0 +1,33 @@
+name: "Build and push Super Mario Docker image with dynamic tag to Docker Hub"
+ 
+on:
+  push:
+    branches:
+      - main 
+ 
+#env:
+#  VERSION: $(( $(cat version.txt) + 1 ))
+  
+jobs:
+  
+  build_push_supermario_docker_image:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Calculate and Set Version Env
+        run: |
+          CURRENT_VERSION=$(cat version.txt)
+          NEW_VERSION=$((CURRENT_VERSION + 1))
+          echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      
+      - name: Build and Push Docker Image
+        run: |
+          docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }} .
+          docker push docker.io/rahulselvam/supermariogitopsproject:${{ env.VERSION }}          
+      
