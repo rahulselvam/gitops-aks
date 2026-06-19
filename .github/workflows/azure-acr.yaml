@@ -1,4 +1,4 @@
-name: "Build and push Super Mario Docker image with dynamic tag to ACR"
+name: "Build and push Docker image to ACR"
  
 on:
   workflow_dispatch:
