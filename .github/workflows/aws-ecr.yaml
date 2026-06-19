@@ -2,12 +2,12 @@ name: "Build and push Super Mario Docker image with dynamic tag to AWS ECR"
  
 on:
   workflow_dispatch:
-#  push:
-#    branches:
-#      - main 
+  push:
+    branches:
+      - main 
  
-#env:
-#  VERSION: $(( $(cat version.txt) + 1 ))
+env:
+  VERSION: $(( $(cat version.txt) + 1 ))
   
 jobs:
   
@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:   
-      - name: Calculate and Set Version Env
-        run: |
-          CURRENT_VERSION=$(cat version.txt)
-          NEW_VERSION=$((CURRENT_VERSION + 1))
-          echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
+      # - name: Calculate and Set Version Env
+      #   run: |
+      #     CURRENT_VERSION=$(cat version.txt)
+      #     NEW_VERSION=$((CURRENT_VERSION + 1))
+      #     echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
       
       - name: Checkout repo
         uses: actions/checkout@v4
