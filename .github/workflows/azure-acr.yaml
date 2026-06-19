@@ -1,9 +1,10 @@
 name: "Build and push Super Mario Docker image with dynamic tag to ACR"
  
 on:
-  push:
-    branches:
-      - main 
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - main 
  
 #env:
 #  VERSION: $(( $(cat version.txt) + 1 ))
@@ -32,8 +33,6 @@ jobs:
  
       - name: Build and Push Docker Image
         run: |
-          CURRENT_VERSION=$(cat version.txt)
-          VERSION=$((CURRENT_VERSION + 1))
           docker build -f dockerfile-for-mario-project-in-gitops-repo-main/Dockerfile -t acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }} .
           docker push acrtest1-h5ezhaetamanf2as.azurecr.io/azure-gitops:${{ env.VERSION }}
 
