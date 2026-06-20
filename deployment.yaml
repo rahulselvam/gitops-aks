@@ -12,6 +12,8 @@ spec:
       labels:
         app: supermariogame
     spec:
+      imagePullSecrets:
+      - name: aws-ecr-secret
       containers:
       - image: 059032601734.dkr.ecr.us-east-2.amazonaws.com/gitops/aws-ecr:v6
         name: supermariogame-container
