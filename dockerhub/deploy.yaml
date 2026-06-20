@@ -26,8 +26,10 @@ metadata:
 spec:
   selector:
     app: supermariogame
+  type: NodePort
   ports:
   - protocol: TCP
-    port: 9000  # <-- Change this line to your desired port
+    port: 80  # <-- Change this line to your desired port
     targetPort: 8080
-  type: LoadBalancer
+    nodePort: 30007
+
